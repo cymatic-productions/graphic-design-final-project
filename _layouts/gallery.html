@@ -12,11 +12,14 @@
     <main>
       <h2>{{ page.title }}</h2>
       <section class="gallery">
-        {% assign images = site.static_files | where: "path", page.image_path %}
+        {% assign images = site.static_files | where_exp: "file", "file.path contains page.image_path" %}
         {% for image in images %}
-          {% if image.extname == ".jpg" or image.extname == ".png" %}
+          {% assign extension = image.path | split: "." | last %}
+          {% if extension == "jpg" or extension == "png" %}
             <figure>
-              <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
+              <a href="{{ image.path }}">
+                <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
+              </a>
               <figcaption>{{ image.name | remove: "-" | remove: "_" | split: "." | first }}</figcaption>
             </figure>
           {% endif %}
@@ -24,7 +27,7 @@
       </section>
     </main>
     <footer>
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+      <p>&copy; {{ site.time | date: '2010' }} {{ site.title }}</p>
     </footer>
   </body>
 </html>

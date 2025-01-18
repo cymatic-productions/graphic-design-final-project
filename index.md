@@ -1,5 +1,5 @@
 ---
 layout: gallery
-title: "My Graphic Design Portfolio"
-image_path: "src/pages"
+title: "05/19/2010 - Leon Christopher Hunter Final Project"
+image_path: "/src/pages"
 ---
