@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <header>
+      <h1>{{ site.title }}</h1>
+    </header>
+    <main>
+      <h2>{{ page.title }}</h2>
+      <section class="gallery">
+        {% assign images = site.static_files | where: "path", page.image_path %}
+        {% for image in images %}
+          {% if image.extname == ".jpg" or image.extname == ".png" %}
+            <figure>
+              <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
+              <figcaption>{{ image.name | remove: "-" | remove: "_" | split: "." | first }}</figcaption>
+            </figure>
+          {% endif %}
+        {% endfor %}
+      </section>
+    </main>
+    <footer>
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+    </footer>
+  </body>
+</html>
