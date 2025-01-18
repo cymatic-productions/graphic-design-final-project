@@ -17,7 +17,7 @@
           {% assign extension = image.path | split: "." | last %}
           {% if extension == "jpg" or extension == "png" %}
             <figure>
-              <a href="{{ image.path }}">
+              <a href="{{ image.path | relative_url }}">
                 <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
               </a>
               <figcaption>{{ image.name | remove: "-" | remove: "_" | split: "." | first }}</figcaption>
